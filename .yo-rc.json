@@ -1,0 +1,36 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.github.delawarecoders.wififinder",
+      "nativeLanguage": "ko"
+    },
+    "jhipsterVersion": "5.7.1",
+    "applicationType": "monolith",
+    "baseName": "wififinder",
+    "packageName": "com.github.delawarecoders.wififinder",
+    "packageFolder": "com/github/delawarecoders/wififinder",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YmY0MTY4MjYyNDA0YjIxMTk3N2QxNTg5MTBkMWJiMTUyNGJiZGE0NzE2YTljMmQxMWNiZTYwMTA4OGE0ZTUwMGE5YTE3MTgyMDUwZWIyNTdkNTgzMjVmOTIxYmQ0NGQzMzM4ODVkMmE5MmI0MDYxOTZiNmQ0NWUyMWJhMWJmMmU=",
+    "clientFramework": "react",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": ["cucumber"],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "ko",
+    "languages": ["ko"]
+  }
+}
