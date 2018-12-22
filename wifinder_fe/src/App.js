@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from "./components/Home";
 
-import EnterLocation from './component/enterLocation/enterLocation'
+import EnterLocation from './components/enterLocation/enterLocation'
 
 import './App.css';
 
