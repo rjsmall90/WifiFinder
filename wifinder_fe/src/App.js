@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import EnterLocation from './component/enterLocation/enterLocation'
-import Location from './component/Location/location'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import EnterLocation from './component/enterLocation/enterLocation'
+import Location from './component/Location/locationHome'
+import Home from "./plugins/Map/Home";
 
 import './App.css';
 
@@ -11,6 +13,11 @@ class App extends Component {
       <div className="App">
       <EnterLocation />
       <Location /> 
+	      <Router>
+		      <div>
+			      <Route exact path="/" component={Home} />
+		      </div>
+	      </Router>
       </div>
     );
   }
