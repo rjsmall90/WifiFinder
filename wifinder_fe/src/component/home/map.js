@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Autocomplete from 'react-google-autocomplete';
-import Geocode from "react-geocode";
+import Geocode from 'react-geocode';
 
 Geocode.setApiKey("AIzaSyBjUqkq3Y327lB9evByUsXROPj03Y2JDbg");
 Geocode.enableDebug();
 
-class Map extends Component {
+export class Map extends Component {
 
 	constructor( props ){
 		super( props );
