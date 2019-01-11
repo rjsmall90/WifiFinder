@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Map from './map';
 import Distance from '../distance';
-
+import CommentBox from '../comments/CommentBox';
 
 export class Home extends Component {
 
@@ -15,6 +15,7 @@ export class Home extends Component {
                     height='400px'
                     zoom={15} />   
                 <Distance/>
+                <CommentBox/>
             </div>
         );
     }

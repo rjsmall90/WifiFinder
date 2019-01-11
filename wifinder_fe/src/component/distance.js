@@ -31,7 +31,7 @@ import GoogleMap from 'google-distance-matrix';
         GoogleMap.matrix([this.state.address], [this.state.dest], function (err, distances) {
             var distance = require('google-distance-matrix');
     
-            distance.key('AIzaSyBjUqkq3Y327lB9evByUsXROPj03Y2JDbg');
+            distance.key('AIzaSyCbK9SSJFtp8LdSzW7ntw15n9jlWTpzv9o');
             distance.units('imperial');
             
             if (err) {

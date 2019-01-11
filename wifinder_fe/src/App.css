@@ -23,7 +23,51 @@
 }
 
 .distance{
-  padding-top: 5cm
+  padding-top: 5cm;
+
+}
+.form-control{
+  /* padding-bottom: 5em; */
+
+}
+
+.comment-box {
+  background: #eee;
+  width: 90%;
+  margin: 10em auto;
+  border: 2px solid #e2e2e2;
+}
+
+.box {
+  padding: 0.5em;
+}
+.commentList {
+  
+}
+.input-groupone{
+  padding: 0.5em;
+}
+.input-grouptwo{
+  padding: 0.5em;
+}
+.comment {
+  h2 {
+    font-size: 1em;
+    padding: 0.3em;
+    margin: 0;
+    background: #e1e1e1;
+  }
+  p {
+    padding: 0.3em;
+    margin: 0;
+    margin-bottom: 1em;
+  }
+}
+
+
+.commentForm {
+  background: #e1e1e1;
+  padding: 0.3em;
 }
 
 
