@@ -24,7 +24,9 @@ class Map extends Component{
 				lng: this.props.center.lng
 			}
 		}
+
 	}
+
 	/**
 	 * Get the current address from the default map position and set those values in the state
 	 */
@@ -36,6 +38,7 @@ class Map extends Component{
 					city = this.getCity( addressArray ),
 					area = this.getArea( addressArray ),
 					state = this.getState( addressArray );
+
 
 				console.log( 'city', city, area, state );
 
@@ -80,12 +83,12 @@ class Map extends Component{
 	getCity = ( addressArray ) => {
 		let city = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
-			//if ( addressArray[ i ].types[0] && 'administrative_area_level_2' === addressArray[ i ].types[0] ) {
 				city = addressArray[ i ].long_name;
 				return city;
-			//}
+		
 		}
 	};
+	
 	/**
 	 * Get the area and set the area input value to the one selected
 	 *
@@ -97,15 +100,17 @@ class Map extends Component{
 		for( let i = 0; i < addressArray.length; i++ ) {
 			if ( addressArray[ i ].types[0]  ) {
 				for ( let j = 0; j < addressArray[ i ].types.length; j++ ) {
-					//if ( 'sublocality_level_1' === addressArray[ i ].types[j] || 'locality' === addressArray[ i ].types[j] ) {
 						area = addressArray[ i ].long_name;
 						return area;
-					//}
 				}
 			}
 		}
 	};
+
+	
 	 getDistance(p1, p2) {
+		 p1 = this.state.address1
+		 p2 = this.state.dest
 		var distance = (window.google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
 		console.log(distance)
 	}
@@ -119,13 +124,13 @@ class Map extends Component{
 		let state = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
 			for( let i = 0; i < addressArray.length; i++ ) {
-				//if ( addressArray[ i ].types[0] && 'administrative_area_level_1' === addressArray[ i ].types[0] ) {
 					state = addressArray[ i ].long_name;
 					return state;
-				//}
 			}
 		}
 	};
+
+
 	/**
 	 * And function for city,state and address input
 	 * @param event
@@ -133,6 +138,7 @@ class Map extends Component{
 	onChange = ( event ) => {
 		this.setState({ [event.target.name]: event.target.value });
 	};
+
 	/**
 	 * This Event triggers when the marker window is closed
 	 *
@@ -205,6 +211,7 @@ class Map extends Component{
 
 
 	render(){
+		
 
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
@@ -248,8 +255,10 @@ class Map extends Component{
 			)
 			
 		);
+		
 		let map;
 		if( this.props.center.lat !== undefined ) {
+			
 			map = <div>
 				<div>
 					<div className="form-group">
@@ -269,7 +278,7 @@ class Map extends Component{
 						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
 					</div>
 				</div>
-
+				
 				<AsyncMap
 					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0&libraries=places"
 					loadingElement={
@@ -282,13 +291,18 @@ class Map extends Component{
 						<div style={{ height: `100%` }} />
 					}
 				/>
+			   
 			</div>
+			
+
 		} else {
 			map = <div style={{height: this.props.height}} />
 		}
 		return( 
-			map 
-		)
+			map
+			
+			
+		);
 	}
 }
 export default Map

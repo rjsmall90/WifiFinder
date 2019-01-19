@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import GoogleMap from 'google-distance-matrix';
+import Geocode from 'react-geocode';
+
+
 
  class Distance extends Component {
      
@@ -8,71 +10,67 @@ import GoogleMap from 'google-distance-matrix';
         this.state = { 
             address: '', 
             dest:'', 
-            distanceText:'' 
-        }
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
-    onChange = (address) => this.setState({ address });
-    onChange = (dest) => this.setState({dest});
-
-    handleChange(event){
-        this.setState({address: event.target.value})
-    }
-    handleDest(event){
-        this.setState({dest: event.target.value})
-    }
-    handleFormSubmit = (event) => {
-        
-        const component = this
-        //const { address, dest } = this.state
-        
-        event.preventDefault()        
-        GoogleMap.matrix([this.state.address], [this.state.dest], function (err, distances) {
-            var distance = require('google-distance-matrix');
-    
-            distance.key('AIzaSyCbK9SSJFtp8LdSzW7ntw15n9jlWTpzv9o');
-            distance.units('imperial');
+            distanceText:'',
             
-            if (err) {
-                return console.log(err);
-            }
-            if(!distances) {
-                return console.log('no distances');
-            }
-            if (distances.status === 'OK') {
-                if(distances.rows[0].elements[0])  {
-                 distance = distances.rows[0].elements[0].duration['text'];
-                    component.setState({
-                        foundDistance: true, 
-                        distanceText: distance
-                    }); 
-                }
-            } 
-        })
-    
+        }
     }
+
+    handleChange(target){
+        this.setState({address: target.value})
+    }
+    handleDest(target){
+        this.setState({dest: target.value})
+    }
+
+    getLatLngAddress(){
+    Geocode.fromAddress(this.state.address).then(
+        response => {
+          const { lat, lng } = response.results[0].geometry.location;
+          console.log(lat, lng);
+        },
+        error => {
+          console.error(error);
+        }
+      );
+    }
+
+     getLatLngDest(){
+        Geocode.fromAddress(this.state.dest).then(
+            response => {
+              const { lat, lng } = response.results[0].geometry.location;
+              console.log(lat, lng);
+            },
+            error => {
+              console.error(error);
+            }
+          );  
+    }
+    getDistance(p1, p2) {
+        p1 = new window.google.maps.LatLng(this.getLatLngAddress.lat,this.getLatLngAddress.lng);
+        p2 = new window.google.maps.LatLng(this.getLatLngDest.lat,this.getLatLngDest.lng);
+       var distance = (window.google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+       console.log(distance)
+   }
+    
     render(){
                
         return(
            <div>
-               
                <h2 className ="distance">Distance Between Two Addresses</h2>
-					<div >
+					<div>
                     	<label htmlFor="">Enter Origin </label>
-						<input type="text"  className="form-control" name="address"  onChange ={this.handleChange.bind(this)} value={ this.state.address }/>
-                    </div>
+						<input type="text" className="form-control" name="address"  onChange ={this.handleChange.bind(this)} value={ this.state.address }/>
+                     </div>
+                    
                     <div>
                         <label htmlFor="">Enter Destination </label>
-						<input type="text" className="form-control" name="dest" onChange={this.handleDest.bind(this)}  value={ this.state.dest }/>
-                    </div>
-
-                    <button className="submit"  onClick = {this.handleFormSubmit.bind(this)} >Submit</button>
-                   
+						<input type="text"  className="form-control" name="dest" on onChange={this.handleDest.bind(this)}  value={ this.state.dest }/>
+                     </div>
+                    <button className="submit" onClick = {this.getDistance.bind(this)} >Submit</button>
             </div>
 
         );
-    }
+   }
 }
 
 export default Distance;
